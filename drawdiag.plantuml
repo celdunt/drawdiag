@@ -1,0 +1,159 @@
+@startuml
+
+title Class Diagram \n
+
+class Drawdiag {
+Drawdiag() : construct
+actionPerformed() : void
+}
+
+class DiagramReader {
+EMPTY : String
+diagramText : String
+ASSOCIATIONS : String
+IMPLEMENTS : String
+EXTENDS : String
+DiagramReader() : construct
+DiagramReader() : construct
+read() : List
+readClass() : int
+readRelations() : void
+openDiagramFile() : void
+openDiagramFile() : void
+}
+
+class RelationsHandler {
+RelationsHandler() : construct
+defineReferenceList() : List
+defineAssociationsList() : List
+}
+
+class Finder {
+directory : PsiDirectory
+firstPsiJavaFiles : List
+psiJavaFiles : List
+Finder() : construct
+find() : void
+findJavaFiles() : void
+destroyDuplicates() : void
+}
+
+class Coordinator {
+classGraphics : List
+Coordinator() : construct
+deleteDuplicateAssociationRelations() : void
+coordinate() : void
+sort() : void
+}
+
+class DiagramGenerator {
+FILE_EXTENSION : String
+project : Project
+finder : Finder
+classes : List
+DiagramGenerator() : construct
+getOutputFile() : VirtualFile
+createOutputFileName() : String
+generate() : void
+getClassesFromProject() : List
+generateDiagram() : void
+}
+
+class CanvasGraphic {
+bufferedImage : BufferedImage
+g2d : Graphics2D
+CanvasGraphic() : construct
+createGraphics() : Graphics2D
+saveGraphic() : void
+getChooserPath() : VirtualFile
+}
+
+class DiagramWriter {
+outputStream : OutputStream
+DiagramWriter() : construct
+start() : void
+write() : void
+startClass() : void
+fields() : void
+methods() : void
+endClass() : void
+end() : void
+TEST_writeReference() : void
+startRelations() : void
+extend() : void
+implement() : void
+association() : void
+}
+
+class GraphicsDiagramControl {
+GraphicsDiagramControl() : construct
+createClassGraphicList() : List
+getCanvasWidth() : int
+getCanvasHeight() : int
+drawDiagram() : void
+testDrawRelations() : void
+foreachRelations() : boolean
+}
+
+class Clazz {
+type : String
+name : String
+fields : List
+methods : List
+extendsList : List
+implementsList : List
+associationsList : List
+Clazz() : construct
+getType() : String
+getName() : String
+getFields() : List
+getMethods() : List
+getExtendsReferenceList() : List
+getImplementsReferenceList() : List
+getAssociationsList() : List
+setType() : Clazz
+setName() : Clazz
+setFields() : Clazz
+setMethods() : Clazz
+setExtendsReferenceList() : Clazz
+setImplementsReferenceList() : Clazz
+setAssociationsReferenceList() : Clazz
+}
+
+class ClassHandler {
+psiClasses : List
+clazzes : List
+ClassHandler() : construct
+psiJavaFilesToPsiClasses() : void
+psiClassesToClazzes() : void
+getPsiClassFields() : List
+getPsiClassMethods() : List
+getPsiClassName() : String
+getPsiClassType() : String
+}
+
+class ClassGraphic {
+classInfo : ClassInfo
+width : int
+height : int
+x : int
+y : int
+font : Font
+fontRenderContext : FontRenderContext
+ClassGraphic() : construct
+calculateSize() : void
+defineX() : void
+defineY() : void
+getTextWidth() : int
+getTextHeight() : int
+draw() : void
+drawBlock() : void
+drawTitle() : void
+drawFieldsAndMethods() : void
+}
+
+
+Drawdiag --|> AnAction
+DiagramGenerator -- Finder
+
+@enduml
